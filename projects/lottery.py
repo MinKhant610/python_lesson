@@ -63,14 +63,19 @@ else :
             #add total bet and reduce amount 
             if money > user_amount :
                 print('Not enough money')
-                showBetAndAmount(total_bet + temp, user_amount - temp)
+                total_bet += temp 
+                user_amount -= temp
+                showBetAndAmount(total_bet , user_amount)
                 break
             
             reverse_num = usr_num[::-1]
             lottery_list.append(reverse_num)
 
+            r_list = []
+            r_list.append(reverse_num)
+
             #check if r_money is win or not 
-            for i in lottery_list:
+            for i in r_list:
                 if (lottery_num == i):
                     lose = False
                     r_win = True
@@ -96,9 +101,7 @@ for i in lottery_list:
     if (lottery_num == i):
         lose = False
         if r_win :
-            temp = money * 80
-            win_money = temp - win_money
-            user_amount = user_amount + win_money
+            user_amount += win_money
         else :
             win_money = money * 80
             user_amount = user_amount + win_money
